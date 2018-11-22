@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vi: set et smarttab sw=4 tabstop=4: -->
+<!--
+Copyright © 2017 Hl and others. All rights reserved.
+
+This program and the accompanying materials are made available under the
+terms of the Eclipse Public License v1.0 which accompanies this distribution,
+and is available at http://www.eclipse.org/legal/epl-v10.html
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opendaylight.mdsal</groupId>
+    <artifactId>binding-parent</artifactId>
+    <version>0.12.2</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>com.hl.kafkaAgent</groupId>
+  <artifactId>kafka-agent-impl</artifactId>
+  <version>0.1.0</version>
+  <!-- <name> formatting is used by autorelease to parse and notify projects on
+       build failure. Please do not modify this unless you have a good reason. -->
+  <name>ODL :: com.hl.kafkaAgent :: ${project.artifactId}</name>
+  <packaging>bundle</packaging>
+
+  <dependencyManagement>
+      <dependencies>
+          <dependency>
+              <groupId>org.opendaylight.controller</groupId>
+              <artifactId>mdsal-artifacts</artifactId>
+              <version>1.7.2</version>
+              <type>pom</type>
+              <scope>import</scope>
+          </dependency>
+      </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- Kafka Agent API Dependencies -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>kafka-agent-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <!-- OpenDayLight Oxygen-sr2 Dependencies -->
+    <dependency>
+      <groupId>org.opendaylight.controller</groupId>
+      <artifactId>sal-binding-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.controller</groupId>
+      <artifactId>messagebus-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.controller</groupId>
+      <artifactId>sal-core-api</artifactId>
+    </dependency>
+
+    <!-- apache kafka servicemix bundle Dependencies -->
+    <!--<dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.metrics-core</artifactId>
+      <version>2.2.0_1</version>
+    </dependency>-->
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.kafka-clients</artifactId>
+      <version>0.9.0.0_1</version>
+    </dependency>
+    <!--<dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.scala-library</artifactId>
+      <version>2.10.2_1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper</artifactId>
+      <version>3.4.5</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.sun.jmx</groupId>
+          <artifactId>jmxri</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.sun.jdmk</groupId>
+          <artifactId>jmxtools</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.jms</groupId>
+          <artifactId>jms</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>-->
+
+    <!-- apache kite avro dependency -->
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.avro</artifactId>
+      <version>1.8.2_1</version>
+    </dependency>
+    <!--<dependency>
+      <groupId>com.thoughtworks.paranamer</groupId>
+      <artifactId>paranamer</artifactId>
+      <version>2.6.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-compress</artifactId>
+      <version>1.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-core-asl</artifactId>
+      <version>1.9.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+      <version>1.9.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.xerial.snappy</groupId>
+      <artifactId>snappy-java</artifactId>
+      <version>1.1.1.6</version>
+    </dependency>
+    <dependency>
+      <groupId>net.jpountz.lz4</groupId>
+      <artifactId>lz4</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jline</groupId>
+      <artifactId>jline</artifactId>
+      <version>0.9.94</version>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty</artifactId>
+      <version>3.7.0.Final</version>
+    </dependency>-->
+
+    <!-- Testing Dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <propertyExpansion>checkstyle.violationSeverity=error</propertyExpansion>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <configuration>
+          <failOnError>true</failOnError>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

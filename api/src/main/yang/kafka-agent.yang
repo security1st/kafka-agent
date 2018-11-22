@@ -1,0 +1,140 @@
+/* ***********************************************************************************************************
+* Copyright (c) 2016 Cisco and/or its affiliates.
+* This software is licensed to you under the terms of the Apache License, Version 2.0 (the "License").
+* You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+* The code, technical concepts, and all information contained herein, are the property of Cisco Technology, Inc.
+* and/or its affiliated entities, under various laws including copyright, international treaties, patent,
+* and/or contract. Any use of the material herein must be in accordance with the terms of the License.
+* All rights not expressly granted by the License are reserved.
+* Unless required by applicable law or agreed to separately in writing, software distributed under the
+* License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+* either express or implied.
+
+* Name:       Kafka-agent.yang
+* Purpose:    Kafka agent yang model
+************************************************************************************************************ */
+
+module kafka-agent {
+    
+    yang-version 1;
+    
+    namespace "urn:opendaylight:params:xml:ns:yang:kafka-agent";
+    
+    prefix "kafka-agent";
+
+    organization "Cisco Inc.";
+ 
+    contact "Xiaoyu Chen <williscc@cisco.com>";
+
+    description "kafkacluster Kafka user agent";
+
+    revision "2016-03-29" {
+        description "Initial revision of kafka-agent model";
+    }
+
+    //This section is the top-level configuration that defines target kafkacluster kafka properties.
+    container kafka-producer-config {
+        
+
+        leaf kafka-broker-list {
+            type string;
+            config true;
+            mandatory true;
+            description
+                "The bootstrapping used by the agent for getting metadata (topics, partitions, and replicas).";
+        }
+
+        leaf compression-type {
+            type enumeration {
+                enum "none" {
+                    value 0;
+                    description "";
+                }
+                enum "gzip" {
+                    value 1;
+                    description "";
+                }
+                enum "snappy" {
+                    value 2;
+                    description "";
+                }
+            }
+            config true;
+            mandatory true;
+        }
+        
+        leaf kafka-topic {
+            type string;
+            config true;
+            mandatory true;
+        }
+
+        leaf message-serialization {
+            type enumeration {
+                enum "raw" {
+                    value 0;
+                    description "";
+                }
+                enum "avro" {
+                    value 1;
+                    description "";
+                }
+            }
+            description "if raw is set, the data";
+            config true;
+            mandatory true;
+        }
+
+        
+        leaf avro-schema-namespace {
+            type string;
+            description "The namespace will replace the placeholder in the plugin avro schema.";
+            config true;
+            mandatory true;
+        }
+
+        leaf message-source-xpath {
+            type string;
+            description "set xpath statement to extract message source message payload";
+            config true;
+            mandatory false;
+        }
+        
+        leaf message-host-ip-xpath {
+            type string;
+            description "if this parameter is not set, runtime host ip is set as default by runtime.";
+            config true;
+            mandatory false;
+            
+        }
+        
+        leaf timestamp-xpath {
+            type string;
+            description "if it is not set, runtime timestamp will be used.";
+            config true;
+            mandatory false;
+        }
+        
+        leaf default-message-source {
+            type string;
+            description "set default message source that would apply to all ETB messages";
+            config true;
+            mandatory false;
+        }
+
+        leaf default-host-ip {
+            type string;
+            config true;
+            mandatory false;
+        }
+
+        leaf event-subscriptions {
+            type string;
+            config true;
+            description "ODL event topic filter; if not set, all topics are valid";
+            mandatory false;
+        }
+
+        
+    }//Container
+}
